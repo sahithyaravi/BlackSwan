@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Abductive Reasoning</title>
+    <!-- Bootstrap v3.0.3 -->
+    <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bubble-highlight {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+        .big-highlight {
+            color: rgb(110, 5, 5);
+            font-weight: bold;
+        }
+        .mcq-option {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <section class="container" id="SET1" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #000000; font-size: 10pt;">
+        <!-- Instructions -->
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="panel panel-info" style="border-color: #4a90e2;">
+                    <div class="panel-heading" style="background-color: #4a90e2; border-color: #004080;">
+                        <h3 class="panel-title" style="color: #fff;">Welcome!</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Welcome to this task! Your goal is to watch the provided videos and choose the most accurate option from the given set of options.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Instructions -->
+    </section>
+    <section class="container" id="full" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+        <fieldset>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" style="font-weight: bold">Full Instructions &nbsp; &nbsp; <a
+                            data-toggle="collapse" href="#collapse0"
+                            style="color:#0080ff;font-weight:normal;text-decoration: underline;">(Expand/Collapse)</a>
+                        </h4>
+                    </div>
+                    <div class="panel-collapse collapse" id="collapse0" style="margin: 10px;">
+                        <div style="max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                            <h2 style="color:black;">Task Instructions</h2>
+                            <p>Thanks for participating in this HIT! This is a task where you will look at videos and choose the right option for the given question.</p>
+                            <h4>Guidelines:</h4>
+                            <ul>
+                                <li style="color: green;"><b>Please read the options carefully.</b></li>
+                                <li style="color: green;"><b>Please watch the video(s) completely.</b></li>
+                                <li style="color: green;"><b>Be as reasonable as you can, and make a smart guess if you are unsure.</b></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </section>
+    <section class="container" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+        <form>
+            <div class="task1">
+                <h2>Task: Multiple Choice Question Answering</h2>
+                <div class="three-part" style="display: flex; min-width: 800px;">
+                    <div class="part1" style="display: block; width: 40%;">
+                        <div style="display: block; width: 95%; height: 280px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                            <h4>Part 1:</h4>
+                            <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                <video id="video" style="display: block; max-height: 220px; max-width: 100%;" controls muted>
+                                    <source src="${videos_url}${preevent}" type="video/mp4">
+                                    <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_A_preevent.mp4" type="video/mp4"> -->
+                                </video> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="part2" style="display: block; width: 20%;">
+                        <div style="display: block; width: 95%; height: 280px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                            <h4>Part 2 (Hidden)</h4>
+                        </div>
+                    </div>
+                    <div class="part3" style="display: block; width: 40%;">
+                        <div style="display: block; width: 95%; height: 280px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                            <h4>Part 3</h4>
+                            <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                <video id="video" style="display: block; max-height: 220px; max-width: 100%;" controls muted>
+                                    <source src="${videos_url}${postevent}" type="video/mp4">
+                                    <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_A_preevent.mp4" type="video/mp4"> -->
+                                </video> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <h4 class="big-highlight">Question: Which of the following could have happened in between the two videos (in Part 2) shown here? </h4> 
+                    <p>If no option seems correct, pick the most plausible (but not impossible) option.</p>
+                    <div class="mcq-option">
+                        <input type="radio" name="mcq_answer" value="option_1" required> ${option1}
+                    </div>
+                    <div class="mcq-option">
+                        <input type="radio" name="mcq_answer" value="option_2" required> ${option2}
+                    </div>
+                    <div class="mcq-option">
+                        <input type="radio" name="mcq_answer" value="option_3" required> ${option3}
+                    </div>
+                    <div style="font-size: 14px;color: red;">Please read all options carefully, as the options may vary in very specific ways.</div>
+            </div>
+            <br>
+            <button class="submit btn btn-primary" id="submitBtn" style="margin-top: 20px;">Submit</button>
+            <span id="error-box" class="hidden" style="color: red;">
+                <p>Please complete all tasks before submitting.</p>
+            </span>
+        </form>
+    </section>
+    <script>
+        $(function () {
+            document.querySelector(".submit").addEventListener("click", function(event) {
+                var mcqAnswer = document.querySelector('input[name="mcq_answer"]:checked');
+                if (!mcqAnswer) {
+                    document.getElementById("error-box").classList.remove('hidden');
+                    document.getElementById("error-box").style.display = "block";
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

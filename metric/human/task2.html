@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Visual Abductive reasoning</title>
+        <!-- Bootstrap v3.0.3 -->
+        <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .bubble-highlight-1 {
+            background-color: #f7b731; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-2 {
+            background-color: #30dc27; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-3 {
+            background-color: #7f32dc; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-4 {
+            background-color: #f7317a; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            li {
+            margin-bottom: 15px;
+            }
+            .big-highlight {
+                color: rgb(110, 5, 5);
+                font-weight: bold;
+            }
+            .big-highlight2 {
+                color: rgb(255, 0, 0);
+            }
+            .likert li {
+                float: left;
+                margin: 0 10px;
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <section class="container" id="SET1" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #000000; font-size: 10pt;">
+            <!-- Instructions -->
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-info" style="border-color: #4a90e2;">
+                        <div class="panel-heading" style="background-color: #4a90e2; border-color: #004080;">
+                            <h3 class="panel-title" style="color: #fff;">Welcome!</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Welcome to this task! Please being by reading the full instructions and the guidelines.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Instructions -->
+        </section>
+        <section class="container" id="full" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+            <fieldset>
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" style="font-weight: bold">Full Instructions &nbsp; &nbsp; <a
+                                data-toggle="collapse" href="#collapse0"
+                                style="color:#0080ff;font-weight:normal;text-decoration: underline;">(Expand/Collapse)</a>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse0" style="margin: 10px;">
+                            <div style="max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                                <h2 style="color:black;">Task Instructions</h2>
+                                <p>Thanks for participating in this HIT! In this task, you will evaluate an explanation derived from two parts of a video. Each video is divided into three parts Part 1, Part 2 and Part 3, described below.</p>
+                                <div style="border: 2px dotted #007bff; border-radius: 10px; padding: 15px;">
+                                    <ul style="list-style-type: none; padding: 0;">
+                                        <li><strong style="color: orangered;">Part 1:</strong> The beginning or setup of the scene in the video.</li>
+                                        <li><strong style="color: #007bff;">Part 2:</strong> The interesting event in the video. </li>
+                                        <li><strong style="color: hwb(283 0% 0%);">Part 3:</strong> The result or outcome of the event in the video.</li>
+                                    </ul>
+                                </div>     
+                                <h3 style="color:black;">Task:</h3>   
+                           
+                                    You will be provided with <strong style="color: orangered;">Part 1</strong>  and  <strong style="color: hwb(283 0% 0%);">Part 3</strong> of the video. <strong style="color: #007bff;">Part 2</strong> is hidden.
+                                    Your task is to evaluate an answer to the question "What happens in between <strong style="color: orangered;">Part 1</strong>  and  <strong style="color: hwb(283 0% 0%);">Part 3</strong>, in <strong style="color: #007bff;">Part 2</strong>?"</i> based on the criteria listed below.
+                                    Please refer to the example, to understand the scoring better.
+                                        <h3 style="color:black;">Criteria:</h3>   
+                                        <ol>
+                                        <li> <strong>Correctness (5 Point Scale)</strong> Check whether the answer correctly describes what could have happened in Part 2 based on Part 1 and Part 3.
+                                        <li>
+                                        <strong>Depth and Thoughtfulness (5 Point Scale)</strong> How much depth in reasoning is covered in the description? Is there sufficient reasoning to support the description? 
+                                        </li>
+                                        <li>
+                                        <strong>Level of Detail (5 Point Scale)</strong> Does the description have sufficient level of detail to easily identify and differentiate between people/objects and actions?
+                                        </li>
+                                        <li>
+                                        <strong>Visual Contradiction (Yes/No) </strong> Does the description follow the content in the video, or contradict the contents of the video? A contradiction happens when the description is impossible, given the video.
+                        
+                            </div>
+                            <div style="max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                                <h2 style="color: #000000;">Example</h2>
+                                <div class="task2_ins">
+                                    <h3>Given Part 1 & 3, describe Part 2</h3>
+                                    <div class="three-part" style="display: flex; min-width: 800px; flex-wrap: nowrap; justify-content: space-between;">
+                                        <div class="part1" style="display: block; width: 32%;">
+                                            <div style="display: block; width: 100%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 1:</h4>
+                                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                                    <video id="video1" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_task2_videos/34_A_preevent.mp4" type="video/mp4">
+                                                    </video>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="part2" style="display: block; width: 32%;">
+                                            <div style="display: block; width: 100%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 2 (Hidden)</h4>
+                                            </div>
+                                        </div>
+                                        <div class="part3" style="display: block; width: 32%;">
+                                            <div style="display: block; width: 100%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 3:</h4>
+                                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                                    <video id="video3" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_task2_videos/34_C_postevent.mp4" type="video/mp4">
+                                                    </video>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div style="margin-left: 10px; margin-top: 10px;"> 
+                                        <div style="margin-left: 10px; margin-top: 10px;">
+                                            <h3>Correctness:</h3>
+                                            <table border="1" cellpadding="10" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Description</th>
+                                                        <th>Score</th>
+                                                        <th>Rubric</th>
+                                                        <th>Reason</th>
+                                                        <th>Rubric</th> <!-- New Column -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>The skateboarder in the back miscalculates the distance and falls to the grass while trying to avoid hitting the one in front.</td>
+                                                        <td>5</td>
+                                                        <td>Excellent</td>
+                                                        <td>This explanation fits perfectly with the sequence of events. It aligns with both part 1 and part 3.</td>
+                                                        <td>Accurately answers the question</td> <!-- Rubric Value -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back slows down but loses control and falls to the grass on the side of the road.</td>
+                                                        <td>4</td>
+                                                        <td>Good</td>
+                                                        <td>This is mostly correct but lacks details about why the skateboarder lost control.</td>
+                                                        <td>Accurately answers the question but missing minor details</td> <!-- Rubric Value -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back tries to overtake the one in front but accidentally veers off the road and falls.</td>
+                                                        <td>3</td>
+                                                        <td>Fair</td>
+                                                        <td>Somewhat plausible, but overtaking is not evident from the videos. It’s an incomplete inference.</td>
+                                                        <td>Partially correct with some incorrect details.</td> <!-- Rubric Value -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back slows down, avoids the one in front, and continues skating without any issues.</td>
+                                                        <td>2</td>
+                                                        <td>Poor</td>
+                                                        <td>This does not align with the events seen in part 3, where the skateboarder clearly falls.</td>
+                                                        <td>Contains significant errors or guesses.</td> <!-- Rubric Value -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back falls suddenly without any interaction with the front skater or an obstacle.</td>
+                                                        <td>1</td>
+                                                        <td>Very Poor</td>
+                                                        <td>Completely incorrect; the skateboarder clearly has trouble staying on the road and falls near the grass.</td>
+                                                        <td>Completely incorrect answer to the question.</td> <!-- Rubric Value -->
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                            
+                                        <div style="margin-left: 10px; margin-top: 10px;">
+                                            <h3>Depth and Thoughtfulness:</h3>
+                                            <table border="1" cellpadding="10" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Description</th>
+                                                        <th>Score</th>
+                                                        <th>Reason</th>
+                                                        <th>Rubric</th> <!-- New column for rubric -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>The skateboarder in the back misjudges their distance from the one in front and, in an attempt to avoid a collision, falls to the side of the road, landing on the grass. Their high speed and close proximity make it difficult to react in time.</td>
+                                                        <td>5</td>
+                                                        <td>Thoughtful and detailed reasoning. This explanation considers both speed and proximity, providing a logical narrative for the fall.</td>
+                                                        <td>Deep analysis with well-reasoned inferences.</td> <!-- Corresponding rubric -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back slows down to avoid hitting the front skater, but loses control while trying to steer away from the road, resulting in a fall to the grass.</td>
+                                                        <td>4</td>
+                                                        <td>Reasonably thoughtful, but the explanation could include more about why the skateboarder lost control.</td>
+                                                        <td>Thoughtfully written but missing some depth in reasoning.</td> <!-- Corresponding rubric -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back attempts to swerve around the front skater but loses balance in the process and falls off the road.</td>
+                                                        <td>3</td>
+                                                        <td>Some detail, but the explanation is fairly basic and doesn’t explore the skater’s actions in depth.</td>
+                                                        <td>Somewhat thoughtfully written, but could benefit from more depth.</td> <!-- Corresponding rubric -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back slows down and continues skating without any incident.</td>
+                                                        <td>2</td>
+                                                        <td>Vague and lacking in detail. There is no indication of a fall, contradicting part 3 of the video.</td>
+                                                        <td>Minimal depth or thoughtfulness.</td> <!-- Corresponding rubric -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back falls abruptly without any interaction with the front skater or loss of control.</td>
+                                                        <td>1</td>
+                                                        <td>No depth or thoughtfulness. This response ignores the visible tension between the skaters.</td>
+                                                        <td>Shows no depth or reasoning.</td> <!-- Corresponding rubric -->
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+
+                                    <div style="margin-left: 10px; margin-top: 10px;"> 
+                                        <div style="margin-left: 10px; margin-top: 10px;">
+                                            <h3>Level of Detail:</h3>
+                                            <table border="1" cellpadding="10" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Description</th>
+                                                        <th>Score</th>
+                                                        <th>Rubric</th>
+                                                        <th>Reason</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>The skateboarder in the red checkered shirt miscalculates the distance and falls to the grass while trying to avoid hitting the one in front.</td>
+                                                        <td>5</td>
+                                                        <td>Excellent</td>
+                                                        <td>The level of detail is sufficient to perfectly identify the people, objects and cause of actions.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder in the back slows down but loses control and falls on the grass.</td>
+                                                        <td>4</td>
+                                                        <td>Good</td>
+                                                        <td>The level of detail is good enough to identify the people, objects and cause of actions, but may not be specific in some aspects.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>One of the skateboarders slows down but loses control, hits the other skateboarder, and falls on the grass.</td>
+                                                        <td>3</td>
+                                                        <td>Fair</td>
+                                                        <td>Level of detail may be just sufficient for answering the question.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The young skateboarder in the back is full of energy, and is going really fast on the roads, but accidentally veers off the road and falls.</td>
+                                                        <td>2</td>
+                                                        <td>Poor</td>
+                                                        <td>Poor level of detail makes it vague and lacking specificity.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>The skateboarder falls suddenly without any apparent reason.</td>
+                                                        <td>1</td>
+                                                        <td>Very Poor</td>
+                                                        <td>There is no level of detail or specificity that would allow for any real understanding of the situation.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            
+
+            
+            
+</div>
+
+                            
+<div style="margin-left: 10px; margin-top: 10px;">
+    <h3>Visual Contradiction:</h3>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Visually follow or contradict?</th>
+                <th>Reason</th>
+                <th>Rubric</th> <!-- New Rubric column -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>The skateboarder in the back miscalculates the distance and falls to the grass while trying to avoid hitting the one in front.</td>
+                <td>Follow</td>
+                <td>The skateboarder’s action aligns with the expected outcome of trying to avoid the other skater.</td>
+                <td>Follows the video content.</td> <!-- Rubric value -->
+            </tr>
+            <tr>
+                <td>The skateboarder in the back slows down but loses control and falls on the side of the road.</td>
+                <td>Follow</td>
+                <td>The description makes sense based on the scenario where losing control leads to a fall.</td>
+                <td>Follows the video content.</td> <!-- Rubric value -->
+            </tr>
+            <tr>
+                <td>The skateboarder in the back tries to overtake the one in front but veers off the road and falls.</td>
+                <td>Contradict</td>
+                <td>The description involves an unrealistic turn of events.</td>
+                <td>Impossible description based on the video.</td> <!-- Rubric value -->
+            </tr>
+            <tr>
+                <td>The skateboarder slows down and continues skating without falling.</td>
+                <td>Contradict</td>
+                <td>The description contradicts the expected difficulty of the situation.</td>
+                <td>Impossible description based on the video.</td> <!-- Rubric value -->
+            </tr>
+            <tr>
+                <td>The skateboarder behind falls suddenly without any obstacle.</td>
+                <td>Contradict</td>
+                <td>The fall appears spontaneous without a visible cause.</td>
+                <td>Impossible description based on the video.</td> <!-- Rubric value -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+                            </div>
+                            
+                                            <!-- </div> --
+                                   
+                                    <br>
+                                    <!-- <b>Please check that your descriptions are: <br><br><span class="bubble-highlight-1">Visually grounded</span> <span class="bubble-highlight-2">Plausible</span> <span class="bubble-highlight-3">Persuasive</span> <span class="bubble-highlight-4">Non-contradictory</span></b>
+                                    <br>
+                                    <button class="proceedBtn2 btn btn-secondary" id="proceedBtn2" style="margin-top: 20px;">Proceed to Task 3</button>
+                                    <span id="error-box-2" class="hidden" style="color: red;">
+                                        <p>You must complete all parts of the task before proceeding.</p>
+                                    </span> -->
+                                </div>
+                               
+                            <!-- </div>
+                            <div style="max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;"> -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+        <section class="container" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+            <form>
+                
+                <div class="task2">
+                    <h3>Given Part 1 & 3, what happened in Part 2? Validate this answer.</h3>
+                    <div class="three-part" style="display: flex; min-width: 800px;">
+                        <div class="part1" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 1:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                        <source src="{{task.row_data['videos_url']}}{{task.row_data['preevent']}}" type="video/mp4"> 
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/2_A_preevent.mp4" type="video/mp4"> -->
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="part2" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 2 (Hidden)</h4>
+                            </div>
+                            <h4>Here is an answer that describes "<span style="color: red;">What could have happened in Part 2, given Part 1 and Part 3?</span>"</h4>
+                            <span style="color: seagreen;">
+                                <div style="margin-left: 10px; margin-top: 10px;"> 
+                                    <h4 name="#txtArea1a1" id="txtArea1a1" rows="3" style="width: 90%;">{{task.row_data['reference_text']}}</h4>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="part3" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 3:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                        <source src="{{task.row_data['videos_url']}}{{task.row_data['postevent']}}" type="video/mp4">
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/4_C_postevent.mp4" type="video/mp4"> -->
+                                    </video> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+      
+                    <br>
+                    <div>
+                        <h4>Evaluate the description (in green) based on the below criteria:</h4>
+                        <h4 class="big-highlight">1. Correctness (Rate 1-5):</h4>
+                        <p>Does the description (in green) correctly answer the question (in red)?</p>
+                        <input type="range" min="1" max="5" value="3" class="slider" id="t2_correctness" name="t2_correctness" oninput="updateCorrectnessValue(this.value)" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Not Correct</span>
+                            <span>Fully Correct</span>
+                        </div>
+                        <p>Score: <span id="correctnessValue">3</span></p>
+                        <!-- Reason for Correctness -->
+                        <p>Please explain why you rated this score:</p>
+                        <textarea id="correctnessReason" name="correctnessReason" rows="2" style="width: 100%;"></textarea>
+                    </div>
+                    
+                    <br>
+                    
+                    <div>
+                        <h4 class="big-highlight">2. Depth and Thoughtfulness (Rate 1-5):</h4>
+                        <p>How much depth in reasoning is covered in the description? Is there sufficient reasoning to support the description?</p>
+                        <input type="range" min="1" max="5" value="3" class="slider" id="t2_depth" name="t2_depth" oninput="updateDepthValue(this.value)" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Not Thoughtfully Written</span>
+                            <span>Very Thoughtfully Written</span>
+                        </div>
+                        <p>Score: <span id="depthValue">3</span></p>
+                        <!-- Reason for Depth and Thoughtfulness -->
+                        <p>Please explain why you rated this score:</p>
+                        <textarea id="depthReason" name="depthReason" rows="2" style="width: 100%;"></textarea>
+                    </div>
+
+                    <br>
+                    
+                    <div>
+                        <h4 class="big-highlight">3. Level of Detail (Rate 1-5):</h4>
+                        <p>Does the description have sufficient level of detail to easily identify and differentiate between people/objects and actions?</p>
+                        <input type="range" min="1" max="5" value="3" class="slider" id="t2_detail" name="t2_detail" oninput="updateDetailValue(this.value)" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Poor Level of Detail</span>
+                            <span>High Level of Detail</span>
+                        </div>
+                        <p>Score: <span id="detailValue">3</span></p>
+                        <!-- Reason for Detail -->
+                        <p>Please explain why you rated this score:</p>
+                        <textarea id="detailReason" name="detailReason" rows="2" style="width: 100%;"></textarea>
+                    </div>
+                    
+                    <br>
+                    
+                  
+                    
+                    <br>
+                    
+                    <div>
+                        <h4 class="big-highlight">4. Visual Contradiction:</h4>
+                        <p>Does the description reasonably follow or contradict what is happening in the videos? 
+                            <br> A description is a contradiction only if it is impossible for that scenario to happen, based on Part 1 & 3.</p>
+                        <input type="range" min="0" max="1" value="1" class="slider" id="t2_vis" name="t2_vis" oninput="updateVisualContradictionValue(this.value)" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Contradicts</span>
+                            <span>Follows</span>
+                        </div>
+                        <!-- <p>Score: <span id="visValue">1</span></p> -->
+                        <!-- Reason for Visual Contradiction -->
+                        <p>Please explain why you rated this score:</p>
+                        <textarea id="visReason" name="visReason" rows="2" style="width: 100%;"></textarea>
+                    </div>
+                    
+                    <br>
+                    
+                    <!-- Optional Feedback Section -->
+                    <div>
+                        <input name="checkbox3" type="checkbox"/>
+                        <i> Optional Feedback: </i> Something about the HIT is unclear/These videos have hateful/offensive content/You have additional feedback:
+                        <div id="fb-container3" style="display:none">
+                            <p style="font-size:8pt;color:grey;margin-left:20px">Your additional feedback:</p>
+                            <textarea cols="50" name="#fb-container3" rows="2" style="margin-left:10px;margin-top:10px"></textarea>
+                        </div>
+                    </div>
+                    
+                    <button class="submit btn btn-primary" id="submitBtn" style="margin-top: 20px;">Submit</button>
+                    <span id="error-box" class="hidden" style="color: red;">
+                        <p>Please complete all tasks before submitting. Your descriptions have to be at least 8 words long. Please do not use "I think", "I feel", "Part 1", "Part 2", "Part 3" etc. See examples in the instructions if needed.</p>
+                    </span>
+                    
+                    <script>
+                        function updateCorrectnessValue(val) {
+                            document.getElementById("correctnessValue").innerText = val;
+                        }
+                    
+                        function updateDepthValue(val) {
+                            document.getElementById("depthValue").innerText = val;
+                        }
+                    
+                        function updateDetailValue(val) {
+                            document.getElementById("detailValue").innerText = val;
+                        }
+
+                    
+                        function updateVisualContradictionValue(val) {
+                            document.getElementById("visValue").innerText = (val == 1 ? 1 : 0);
+                        }
+                    </script>
+                    
+                    <style>
+                        /* Slider Styles */
+                        .slider {
+                            -webkit-appearance: none;
+                            width: 100%;
+                            height: 15px;
+                            border-radius: 5px;
+                            background: linear-gradient(to right, #f44336, #ffeb3b, #4caf50);
+                            outline: none;
+                            opacity: 0.9;
+                            transition: opacity .15s ease-in-out;
+                        }
+                    
+                        .slider:hover {
+                            opacity: 1;
+                        }
+                    
+                        /* Style for the bubble highlights */
+                        .big-highlight {
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+                    
+                        p {
+                            font-size: 14px;
+                            margin-top: 5px;
+                        }
+                    
+                        /* Style for the container */
+                        div {
+                            margin-bottom: 15px;
+                        }
+                    </style>
+                    

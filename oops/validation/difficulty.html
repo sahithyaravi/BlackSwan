@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rate Video Difficulty</title>
+        <!-- Bootstrap v3.0.3 -->
+        <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .bubble-highlight-1 {
+                background-color: #f7b731;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 10px;
+            }
+            .bubble-highlight-2 {
+                background-color: #30dc27;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 10px;
+            }
+            .bubble-highlight-3 {
+                background-color: #7f32dc;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 10px;
+            }
+            .bubble-highlight-4 {
+                background-color: #f7317a;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 10px;
+            }
+            .slider-container {
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+            .slider-label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            .slider-output {
+                margin-left: 10px;
+                font-weight: bold;
+                color: #007bff;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <section class="container" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+            <!-- Instructions -->
+            <div class="panel panel-info" style="border-color: #4a90e2;">
+                <div class="panel-heading" style="background-color: #4a90e2; border-color: #004080;">
+                    <h3 class="panel-title" style="color: #fff;">Rate the Difficulty of Understanding the Video</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Please watch the video carefully and rate the difficulty of understanding the unexpected event based on the following metrics using the sliders below:</p>
+                    <ul>
+                        <li><span class="bubble-highlight-1">Clarity of Actions</span> - How clear are the actions of the people/objects involved?</li>
+                        <li><span class="bubble-highlight-2">Unpredictability of the Event</span> - How unpredictable or surprising was the event?</li>
+                        <li><span class="bubble-highlight-3">Complexity of the Scene</span> - How complex was the setting where the event took place?</li>
+                        <li><span class="bubble-highlight-4">Number of Objects Involved</span> - How many objects/people were interacting?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="container">
+            <h4>Watch the video:</h4>
+            <div class="story-excerpt" style="padding-left: 20px; padding-bottom: 20px;">
+                <video id="video" width="80%" height="auto" controls>
+                    <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/{{task.row_data['set_id']}}/{{task.row_data['video_id']}}" 
+                    type="video/mp4">
+                </video> 
+            </div>
+        </section>
+
+        <!-- Sliders for Rating -->
+        <section class="container">
+            <form>
+                <!-- Clarity of Actions Slider -->
+                <div class="slider-container">
+                    <label class="slider-label" for="clarity-slider">Clarity of Actions:</label>
+                    <input type="range" id="clarity-slider" name="clarity-slider" min="1" max="5" value="3" oninput="document.getElementById('clarity-output').textContent = this.value">
+                    <span class="slider-output" id="clarity-output">3</span>
+                </div>
+
+                <!-- Unpredictability of Event Slider -->
+                <div class="slider-container">
+                    <label class="slider-label" for="unpredictability-slider">Unpredictability of the Event:</label>
+                    <input type="range" id="unpredictability-slider" name="unpredictability-slider" min="1" max="5" value="3" oninput="document.getElementById('unpredictability-output').textContent = this.value">
+                    <span class="slider-output" id="unpredictability-output">3</span>
+                </div>
+
+                <!-- Complexity of Scene Slider -->
+                <div class="slider-container">
+                    <label class="slider-label" for="complexity-slider">Complexity of the Scene:</label>
+                    <input type="range" id="complexity-slider" name="complexity-slider" min="1" max="5" value="3" oninput="document.getElementById('complexity-output').textContent = this.value">
+                    <span class="slider-output" id="complexity-output">3</span>
+                </div>
+
+                <!-- Number of Objects Involved Slider -->
+                <div class="slider-container">
+                    <label class="slider-label" for="objects-slider">Number of Objects Involved:</label>
+                    <input type="range" id="objects-slider" name="objects-slider" min="1" max="5" value="3" oninput="document.getElementById('objects-output').textContent = this.value">
+                    <span class="slider-output" id="objects-output">3</span>
+                </div>
+
+                <button class="submit btn btn-primary" id="submitBtn" style="margin-top: 20px;">Submit</button>
+            </form>
+        </section>
+
+        <!-- Validation Script -->
+        <script>
+            document.querySelector(".submit").addEventListener("click", function(event) {
+                event.preventDefault();
+                alert("Thank you for rating the video! Your ratings have been submitted.");
+                // Additional code can be added here to send the form data to the server
+            });
+        </script>
+    </body>
+</html>
+=======
+<section class="container" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+    <h2>Instructions</h2>
+    <P>Your task is to view a video and assess it based on the metrics of complexity, unpredicatability, clarity and number of events. </P>
+    <h2>Example Rating</h2>
+    <h4>Example Video:</h4>
+    <div class="video-container" style="margin-bottom: 20px;">
+        <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+            <video style="display: block; max-height: 400px; max-width: 100%;" controls>
+                <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/oops_val_v6_merged/1043_E_merged.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="metric">
+        <h4>1. Complexity (Rate 1-5):</h4>
+        <p><strong>Rating:</strong> 3</p>
+        <p><strong>Reason:</strong> The scene involves two people (the man and the boy) and two surfboards. There is some interaction between the individuals and objects, but the number of distinct objects and actions is moderate, not overly complex.</p>
+    </div>
+
+    <div class="metric">
+        <h4>2. Unpredictability (Rate 1-5):</h4>
+        <p><strong>Rating:</strong> 3</p>
+        <p><strong>Reason:</strong> While the boy wobbling may be somewhat expected, his fall onto the man below introduces a level of unpredictability. The viewer might not immediately expect the boy to fall onto the man, adding a surprising element However the wobbly board already provides a hint, so it is not totally unpredicatable.</p>
+    </div>
+
+    <div class="metric">
+        <h4>3. Clarity of Actions (Rate 1-5):</h4>
+        <p><strong>Rating:</strong> 5</p>
+        <p><strong>Reason:</strong> The actions are very clear and easy to follow. It’s straightforward: a boy tries to balance on a surfboard, wobbles, and falls onto the man. No confusing elements or unclear movements.</p>
+    </div>
+
+    <div class="metric">
+        <h4>4. Number of Events (Rate 1-5):</h4>
+        <p><strong>Rating:</strong> 2</p>
+        <p><strong>Reason:</strong> There is primarily one event in this video—the boy losing his balance and falling onto the man. There aren’t multiple distinct events occurring, so it would be rated on the lower end of this scale.</p>
+    </div>
+
+
+    <p>Please watch the video below and rate it based on the following metrics using the sliders provided.</p>
+    
+    <div class="video-container" style="margin-bottom: 20px;">
+        <h3>Video:</h3>
+        <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+            <video id="videoTask" style="display: block; max-height: 400px; max-width: 100%;" controls>
+                <source src="{{task.row_data['full_video_url']}}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <form>
+
+        <!-- Complexity -->
+        <div class="metric">
+            <h4>1. Complexity (Rate 1-5):</h4>
+            <p>How complex was the scene in terms of number of objects and persons?</p>
+            <input type="range" min="1" max="5" value="3" class="slider" id="complexity" name="complexity" oninput="document.getElementById('complexityValue').innerText = this.value;" style="width: 100%;">
+            <div style="display: flex; justify-content: space-between;">
+                <span>Simple</span>
+                <span>Very Complex</span>
+            </div>
+            <p>Score: <span id="complexityValue">3</span></p>
+        </div>
+
+        <!-- Unpredictability -->
+        <div class="metric">
+            <h4>2. Unpredictability (Rate 1-5):</h4>
+            <p>How unpredictable was the event?</p>
+            <input type="range" min="1" max="5" value="3" class="slider" id="unpredictability" name="unpredictability" oninput="document.getElementById('unpredictabilityValue').innerText = this.value;" style="width: 100%;">
+            <div style="display: flex; justify-content: space-between;">
+                <span>Predictable</span>
+                <span>Very Unpredictable</span>
+            </div>
+            <p>Score: <span id="unpredictabilityValue">3</span></p>
+        </div>
+
+        <!-- Clarity of Actions -->
+        <div class="metric">
+            <h4>3. Clarity of Actions (Rate 1-5):</h4>
+            <p>How clear were the actions and events?</p>
+            <input type="range" min="1" max="5" value="3" class="slider" id="clarity" name="clarity" oninput="document.getElementById('clarityValue').innerText = this.value;" style="width: 100%;">
+            <div style="display: flex; justify-content: space-between;">
+                <span>Unclear</span>
+                <span>Very Clear</span>
+            </div>
+            <p>Score: <span id="clarityValue">3</span></p>
+        </div>
+
+        <!-- Number of Events -->
+        <div class="metric">
+            <h4>4. Number of Events (Rate 1-5):</h4>
+            <p>How many events occurred in the video?</p>
+            <input type="range" min="1" max="5" value="3" class="slider" id="events" name="events" oninput="document.getElementById('eventsValue').innerText = this.value;" style="width: 100%;">
+            <div style="display: flex; justify-content: space-between;">
+                <span>Few</span>
+                <span>Many</span>
+            </div>
+            <p>Score: <span id="eventsValue">3</span></p>
+        </div>
+
+        <button class="submit btn btn-primary" id="submitBtn" style="margin-top: 20px;">Submit</button>
+    </form>
+
+    <style>
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #f44336, #ffeb3b, #4caf50);
+            outline: none;
+            opacity: 0.9;
+            transition: opacity .15s ease-in-out;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        /* Spacing and layout styles */
+        .metric {
+            margin-bottom: 30px;
+        }
+    </style>
+</section>
