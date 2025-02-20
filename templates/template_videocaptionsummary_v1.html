@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Visual Abductive reasoning</title>
+        <!-- Bootstrap v3.0.3 -->
+        <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .bubble-highlight-1 {
+            background-color: #f7b731; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-2 {
+            background-color: #30dc27; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-3 {
+            background-color: #7f32dc; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-4 {
+            background-color: #f7317a; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            li {
+            margin-bottom: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <section class="container" id="SET1" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #000000; font-size: 10pt;">
+            <!-- Instructions -->
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-info" style="border-color: #4a90e2;">
+                        <div class="panel-heading" style="background-color: #4a90e2; border-color: #004080;">
+                            <h3 class="panel-title" style="color: #fff;">Welcome!</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Welcome to this task! Please being by reading the full instructions and the guidelines.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Instructions -->
+        </section>
+        <section class="container" id="full" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+            <fieldset>
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" style="font-weight: bold">Full Instructions &nbsp; &nbsp; <a
+                                data-toggle="collapse" href="#collapse0"
+                                style="color:#0080ff;font-weight:normal;text-decoration: underline;">(Expand/Collapse)</a>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse0" style="margin: 10px;">
+                            <div style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                                <h3 style="color:black;">Task Instructions</h3>
+                                <p>Thanks for participating in this task. Your goal is to describe a very short video clip (can be a small part of a longer video) to the best of your ability.</p>
+                                <ol>
+                                    <li>
+                                        <strong style="color: black;">Step 1:</strong> First, watch the video carefully and think about the scene, the objects and people, and their actions.
+                                    </li>
+                                    <li>
+                                        <strong style="color: black;">Step 2:</strong> Next, describe the video in a few sentences. You must write at least 25 words, but longer descriptions are welcome.
+                                    </li>
+                                    <li>
+                                        <strong style="color: black;">Step 3:</strong> Check to ensure that you are not making any *assumptions* about the contents in the video, and that your description contains all aspects of the scene.
+                                    </li>
+                                </ol>
+                            </div>
+                            <div style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                                <h3 style="color:black;">Example 1</h3>
+                                <div class="story-excerpt" style="padding-left: 20px; padding-bottom: 20px;">
+                                    <video id="video" width="80%" height="auto" controls>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_A_preevent.mp4" 
+                                         type="video/mp4">
+                                    </video> 
+                                </div>
+                                <p style="font-size: 12pt">Watch this clip and describe everything about the contents of the video:</p>
+                                <div style="margin-left: 20px; margin-right: 20px;">
+                                    A person is walking towards a body of water, may be a lake on a board walk with a fishing stick. 
+                                    Then, the person sees a silver sedan moving towards the water on his left.
+                                    The person steps off the boardwalk towards the car hastily.
+                                    The video is in the perspective of the person walking.
+                                </div>
+                                <br>
+                                <h3 style="color:black;">Example 2</h3>
+                                <div class="story-excerpt" style="padding-left: 20px; padding-bottom: 20px;">
+                                    <video id="video" width="80%" height="auto" controls>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/189_C_postevent.mp4" 
+                                         type="video/mp4">
+                                    </video> 
+                                </div>
+                                <p style="font-size: 12pt">Watch this clip and describe everything about the contents of the video:</p>
+                                <div style="margin-left: 20px; margin-right: 20px;">
+                                    A man walks down a small mud hill towards the camera. There appears to be an upside-down wheelchair to the right of the scene. 
+                                    The secene is set in a farm-like area, with a shed in the back and mostly grassy fields.
+                                </div>
+                                <br>
+                                <h3 style="color:black;">Example 3</h3>
+                                <div class="story-excerpt" style="padding-left: 20px; padding-bottom: 20px;">
+                                    <video id="video" width="30%" height="auto" controls>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/159_A_preevent.mp4" 
+                                         type="video/mp4">
+                                    </video> 
+                                </div>
+                                <p style="font-size: 12pt">Watch this clip and describe everything about the contents of the video:</p>
+                                <div style="margin-left: 20px; margin-right: 20px;">
+                                    Two kids are sitting in a cardboard box, 
+                                    and they have started going down the stairs of the house while riding in the box.
+                                    The camera is pointed looking up towards the stairs.
+                                </div>
+                                <br>
+                            </div>
+                            
+                            <h3>Guidelines:</h3>
+                            <ul>
+                                <li style="color: green;"><b><span class="bubble-highlight-2">Objects</span> - Describe the objects present in the scene and the state/location of the objects.</b></li>
+                                <li style="color: green;"><b><span class="bubble-highlight-3">People</span> - Identify and describe the people in the video (eg. young child, old lady...).</b></li>
+                                <li style="color: green;"><b><span class="bubble-highlight-4">Actions</span> - Describe the movements or actions in the video.</b></li>
+                                <li style="color: green;"><b><span class="bubble-highlight-1">Scene</span> - Descibe the scene and setting, and where the camera is pointed.</b></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+        <section class="container" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+            <form>
+                <div class="task1">
+                    <h2>Task: Describe the events in this video</h2>
+                    <div class="story-excerpt" style="padding-left: 20px; padding-bottom: 20px;">
+                        <video id="video" width="80%" height="auto" controls>
+                            <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/{{task.row_data['set_id']}}/{{task.row_data['video_id']}}" 
+                             type="video/mp4">
+                        </video> 
+                    </div>
+                    <p style="font-size: 12pt">Watch this clip and describe what is happening in the video.</p>
+                    <div style="margin-left: 20px;">
+                        <textarea  name="#txtArea1a2" id="txtArea1" rows="2" cols="70" required></textarea>
+                    </div>
+                    <br>
+                    <br>
+                    <b>Please check that your description contains information about: <br><br><span class="bubble-highlight-1">Scene</span> <span class="bubble-highlight-2">Objects</span> <span class="bubble-highlight-3">People</span> <span class="bubble-highlight-4">Actions</span></b>
+                    <br>
+                    <span id="error-box-1" class="hidden" style="color: red;">
+                        <p>You must complete all three hypothesis before proceeding.</p>
+                    </span>
+                </div>
+                
+                <button class="submit btn btn-primary" id="submitBtn" style="margin-top: 20px;">Submit</button>
+                <span id="error-box" class="hidden" style="color: red;">
+                    <p>Error: You must write a proper description with at least 25 words.</p>
+                </span>
+            </form>
+        </section>
+        <script>
+            
+            document.querySelector(".submit").addEventListener("click", function(event) {
+                
+                var t1 = document.getElementById("txtArea1").value;
+                var w1 = t1.split(" ").length;
+
+                if (t1 === "" || w1 < 25) {
+                    document.getElementById("error-box").classList.remove('hidden');
+                    document.getElementById("error-box").style.display = "block";
+                    event.preventDefault();
+                }
+                
+            });
+
+        </script>
+    </body>

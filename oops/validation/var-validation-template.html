@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Visual Abductive reasoning</title>
+        <!-- Bootstrap v3.0.3 -->
+        <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .bubble-highlight-1 {
+            background-color: #f7b731; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-2 {
+            background-color: #30dc27; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-3 {
+            background-color: #7f32dc; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-4 {
+            background-color: #f7317a; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            li {
+            margin-bottom: 15px;
+            }
+            .big-highlight {
+                color: rgb(110, 5, 5);
+                font-weight: bold;
+            }
+            .big-highlight2 {
+                color: rgb(255, 0, 0);
+            }
+            .likert li {
+                float: left;
+                margin: 0 10px;
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <section class="container" id="SET1" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #000000; font-size: 10pt;">
+            <!-- Instructions -->
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-info" style="border-color: #4a90e2;">
+                        <div class="panel-heading" style="background-color: #4a90e2; border-color: #004080;">
+                            <h3 class="panel-title" style="color: #fff;">Welcome!</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Welcome to this task! Please being by reading the full instructions and the guidelines.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Instructions -->
+        </section>
+        <section class="container" id="full" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+            <fieldset>
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" style="font-weight: bold">Full Instructions &nbsp; &nbsp; <a
+                                data-toggle="collapse" href="#collapse0"
+                                style="color:#0080ff;font-weight:normal;text-decoration: underline;">(Expand/Collapse)</a>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapse0" style="margin: 10px;">
+                            <div style="max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                                <h2 style="color:black;">Task Instructions</h2>
+                                <p>Thanks for participating in this HIT! Each video is divided into three parts Part 1, Part 2 and Part 3, described below.</p>
+                                <div style="border: 2px dotted #007bff; border-radius: 10px; padding: 15px;">
+                                    <ul style="list-style-type: none; padding: 0;">
+                                        <li><strong style="color: orangered;">Part 1:</strong> The beginning or setup of the scene in the video.</li>
+                                        <li><strong style="color: #007bff;">Part 2:</strong> The interesting event in the video. </li>
+                                        <li><strong style="color: hwb(283 0% 0%);">Part 3:</strong> The result or outcome of the event in the video.</li>
+                                    </ul>
+                                </div>     
+                                <h3 style="color:black;">Tasks:</h3>   
+                                <ol>
+                                    <li>
+                                        <strong style="color: black;">Task 1:</strong> First, you will watch <strong style="color: orangered;">Part 1</strong> of the video, and <strong style="color: #007bff;">Part 2</strong> and <strong style="color: hwb(283 0% 0%);">Part 3</strong> will be hidden. You need to write <strong>diverse</strong> descriptions of what could have happened in <strong style="color: #007bff;">Part 2</strong> (the middle part).  
+                                    </li>
+                                    <li>
+                                        <strong style="color: black;">Task 2:</strong> Next, you will be revealed <strong style="color: hwb(283 0% 0%);">Part 3</strong> of the video. You need to validate whether your desciptions from Task 1 can answer the question <i>What happens in between <strong style="color: orangered;">Part 1</strong>  and  <strong style="color: hwb(283 0% 0%);">Part 3</strong> ?</i>. If marked invalid, you <b>must</b> update a new one based on the video. Update descriptions for any changes, even if they are <b> minor</b>.
+                                    </li>
+                                    <li>
+                                        <strong style="color: black;">Task 3:</strong> Finally, you will get to watch <strong style="color: #007bff;">Part 2</strong> in the video. Evaluate if any of your previous descriptions align with <b>all three parts of the video</b>. You also need to provide a new description, based on the ground truth video shown to you.
+                                    </li>
+                                </ol>
+                                <B>In all the tasks, please make sure your descriptions capture the <i>visual</i> context in the video accurately. As we provide more visual context and expose you to additional parts of the video, we expect more and more visually grounded descriptions.</B>
+                            </div>
+                            <div style="max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                                <h2 style="color: #000000;">Example</h2>
+                                <div class="task1_ins">
+                                    <h3>Task 1: Given Part 1, guess Part 2</h3>
+                                    <div class="three-part" style="display: flex; min-width: 800px;">
+                                        <div class="part1" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 1:</h4>
+                                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;"  controls muted >
+                                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_task2_videos/34_A_preevent.mp4" type="video/mp4">
+                                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_A_preevent.mp4" type="video/mp4"> -->
+                                                    </video> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="part2" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 2 (Hidden)</h4>
+                                            </div>
+                                            Think about what could happen in Part 3 (the outcome of the video). <br>
+                                            Write three possible descriptions on what will happen in Part 2 to lead to any outcome in Part 3.
+                                            <div style="margin-left: 10px; margin-top: 10px;"> 
+                                            <ol>
+                                                <li>The skateboarder in the back hits the person skating in the front and they both lose balance.</li>
+                                                <li>The skateboarder in the back moves closer to the person skating in front but goes around him, avoiding an accident.</li>
+                                                <li> The skateboarder in the back hits the person skating in the front, and they both hit a car. </li>
+                                            </ol> 
+                                            </div>
+                                            <br>
+                                            
+                                        </div>
+                                        <div class="part3" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 3 (Hidden)</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="task2_ins">
+                                    <h3>Task 2: Given Part 1 & 3, update Part 2</h3>
+                                    <div class="three-part" style="display: flex; min-width: 800px;">
+                                        <div class="part1" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 1:</h4>
+                                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_task2_videos/34_A_preevent.mp4" type="video/mp4"> 
+                                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/2_A_preevent.mp4" type="video/mp4"> -->
+                                                    </video>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="part2" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 2 (Hidden)</h4>
+                                            </div>
+                                            After watching Part 3, you need to update your descriptions for Part 2. <br>
+                                            Validate what could have happened in this part. Please write a new description for each invalid one.
+                                            <div style="margin-left: 10px; margin-top: 10px;"> 
+                                                <ol>
+                                                    <li>
+                                                        <!-- <b>Description #1</b> -->
+                                                        <p>
+                                                            <i>Description:</i> The skateboarder in the back hits the person skating in the front and they both lose balance.
+                                                            <br>
+                                                            ✅ Valid
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <!-- <b>Explanation #2</b> -->
+                                                        <p>
+                                                            <i>Description:</i> The skateboarder in the back moves closer to the person skating in front but goes around him, avoiding an accident.
+                                                            <br>
+                                                            ❌ Invalid (the skateboarder does fall)
+                                                            <br>
+                                                            <i>Updated Description:</i> The skateboarder in the back tried to go around the skateboarder in front, but he still lost balance and fell on the roadside.
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <!-- <b>Explanation #3</b> -->
+                                                        <p>
+                                                            <i>Description:</i> The skateboarder in the back hits the person skating in the front, and they both hit a car.
+                                                            <br>
+                                                            ❌ Invalid (There is no car)
+                                                            <br>
+                                                            <i>Updated Description:</i> The skateboarder in the back hits the person skating in the front causing him to turn and fall in the middle of the road.
+                                                        </p>
+                                                    </li>
+                                                </ol>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="part3" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 3:</h4>
+                                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_task2_videos/34_C_postevent.mp4" type="video/mp4">
+                                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/4_C_postevent.mp4" type="video/mp4"> -->
+                                                    </video> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <!-- <b>Please check that your descriptions are: <br><br><span class="bubble-highlight-1">Visually grounded</span> <span class="bubble-highlight-2">Plausible</span> <span class="bubble-highlight-3">Persuasive</span> <span class="bubble-highlight-4">Non-contradictory</span></b>
+                                    <br>
+                                    <button class="proceedBtn2 btn btn-secondary" id="proceedBtn2" style="margin-top: 20px;">Proceed to Task 3</button>
+                                    <span id="error-box-2" class="hidden" style="color: red;">
+                                        <p>You must complete all parts of the task before proceeding.</p>
+                                    </span> -->
+                                </div>
+                                <div class="task3_ins">
+                                    <h3>Task 3: Given all parts, validate Part 2</h3>
+                                    <div class="three-part" style="display: flex; min-width: 800px;">
+                                        <div class="part1" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 1:</h4>
+                                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;;">
+                                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_task2_videos/34_A_preevent.mp4" type="video/mp4" type="video/mp4">
+                                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_A_preevent.mp4" type="video/mp4"> -->
+                                                    </video>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="part2" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 2:</h4>
+                                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_task2_videos/34_B_event.mp4" type="video/mp4" type="video/mp4"> 
+                                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_B_event.mp4" type="video/mp4"> -->
+                                                    </video>
+                                                </div>
+                                            </div>
+                                            Select the valid descriptions for this part. If none are valid, please write a new description.
+                                            <div style="margin-left: 10px; margin-top: 10px;"> 
+                                                <ol>
+                                                    <li>
+                                                        <!-- <b>Description #1</b> -->
+                                                        <p>
+                                                            <i>Description:</i> The skateboarder in the back hits the person skating in the front and they both lose balance.
+                                                            <br>
+                                                            ❌ Invalid (the skateboarder in the front does not lose balance/fall.)
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <!-- <b>Explanation #2</b> -->
+                                                        <p>
+                                                            <i>Description:</i> The skateboarder in the back tried to go around the skateboarder in front, but he still lost balance and fell on the roadside.
+                                                            <br>
+                                                            ✅ Valid
+                                                            <br>
+                                                            <!-- <i>Updated Description:</i>  -->
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <!-- <b>Explanation #3</b> -->
+                                                        <p>
+                                                            <i>Description:</i> The skateboarder in the back hits the person skating in the front causing him to turn and fall in the middle of the road.
+                                                            <br>
+                                                            ❌ Invalid (the skateboarder in the front does not get hit by the skateboarder in the back.)
+                                                            <br>
+                                                            <!-- <i>Updated Description:</i>  -->
+                                                        </p>
+                                                    </li>
+                                                </ol>
+                                                
+                                            </div>
+        
+                                        </div>
+                                        <div class="part3" style="display: block; width: 33%;">
+                                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                                <h4>Part 3:</h4>
+                                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_task2_videos/34_C_postevent.mp4" type="video/mp4" type="video/mp4">
+                                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/2_C_postevent.mp4" type="video/mp4"> -->
+                                                    </video> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <br>
+                                    <b>Please check that your descriptions are: <br><br><span class="bubble-highlight-1">Visually grounded</span> <span class="bubble-highlight-2">Plausible</span> <span class="bubble-highlight-3">Persuasive</span> <span class="bubble-highlight-4">Non-contradictory</span></b>
+                                    <br> -->
+                                </div>
+                            </div>
+                            <div style="max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                            <h2>Guidelines:</h2>
+                            <ul>
+                                <li style="color: green;"><b><span class="bubble-highlight-1">Visually grounded</span> - Your descriptions should be grounded to the visual context - objects, scenes and activities in the video.</b></li>
+                                <li style="color: green;"><b><span class="bubble-highlight-2">Plausible</span> - Your descriptions should be plausible. Please don't write descriptions that break physical rules or are against common sense.</b></li>
+                                <li style="color: green;"><b><span class="bubble-highlight-3">Persuasive</span> - Your descriptions should be persuasive. It should add sufficient information so that the outcome happened given the initial context of the video.</b></li>
+                                <li style="color: red;"><b><span class="bubble-highlight-4">Non-contradictory</span> - Do not contradict the information in the videos.</b></li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+        <section class="container" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+            <form>
+                <div class="task1">
+                    <h2>Task 1: Given Part 1, describe Part 2</h2>
+                    <div class="three-part" style="display: flex; min-width: 800px;">
+                        <div class="part1" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 1:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/{{task.row_data['set']}}/{{task.row_data['preevent']}}" type="video/mp4">
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_A_preevent.mp4" type="video/mp4"> -->
+                                    </video> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="part2" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 2 (Hidden)</h4>
+                            </div>
+                            Think about what could happen in Part 3 (the outcome of the video). <br>
+                            <span class='big-highlight2'>Write three possible diverse descriptions on what will happen in Part 2 to lead to any outcome in Part 3.</span>
+                            <br>
+                            <span style="color: seagreen;">
+                                <div style="margin-left: 10px; margin-top: 10px;"> 
+                                    <p name="#txtArea1a1" id="txtArea1a1" rows="3" style="width: 90%;">{{task.row_data['reference_text']}}</p>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="part3" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 3 (Hidden)</h4>
+                            </div>
+                            <p style="padding-left: 20px;padding-top: 10px;">Think about what could happen in the outcome here!<br><br> You should consider many possible outcomes, then write the descriptions in Part 2.<br><br> For an example of how each part looks, please see the instructions above.</p>
+                            <!-- Describe three diverse possibilities of what could happen in this part.
+                            <div style="margin-left: 10px; margin-top: 10px;">
+                                <p  name="#txtArea1a2" id="txtArea1a2" rows="2" style="width: 90%;" placeholder="Description 1" required></p>
+                            </div>
+                            <br>
+                            <div style="margin-left: 10px;">
+                                <p  name="#txtArea1b1" id="txtArea1b2" rows="2" style="width: 90%;" placeholder="Description 2" required></p>
+                            </div>
+                            <br>
+                            <div style="margin-left: 10px;">
+                                <p  name="#txtArea1c1" id="txtArea1c2" rows="2" style="width: 90%;" placeholder="Description 3" required></p>
+                            </div> -->
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                        <h4 class="big-highlight">1. Correctness (Rate 1-5):</h4>
+                        <p>Do the descriptions (in green) correctly answer the question (in red)?</p>
+                        <ul class="likert">
+                            <li> Not Correct </li>
+                            <li><input type="radio" name="t1_correctness" value="1" />=1</li>
+                            <li><input type="radio" name="t1_correctness" value="2" />=2</li>
+                            <li><input type="radio" name="t1_correctness" value="3" />=3</li>
+                            <li><input type="radio" name="t1_correctness" value="4" />=4</li>
+                            <li><input type="radio" name="t1_correctness" value="5" />=5</li>
+                            <li> Fully Correct </li>
+                        </ul>
+                        <br>
+                    </div>
+                    
+                    <div>
+                        <h4 class="big-highlight">2. Depth and Thoughtfulness (Rate 1-5):</h4>
+                        <p>Do the descriptions show reasonable depth in reasoning based on the contents of the video? Were they throughtfully written?</p>
+                        <ul class="likert">
+                            <li> Not Thoughtfully Written </li>
+                            <li><input type="radio" name="t1_depth" value="1" />=1</li>
+                            <li><input type="radio" name="t1_depth" value="2" />=2</li>
+                            <li><input type="radio" name="t1_depth" value="3" />=3</li>
+                            <li><input type="radio" name="t1_depth" value="4" />=4</li>
+                            <li><input type="radio" name="t1_depth" value="5" />=5</li>
+                            <li> Very Thoughtfully Written </li>
+                        </ul>
+                        <br>
+                    </div>
+                    <div>
+                        <h4 class="big-highlight">3. Grammar:</h4>
+                        <p>Are the descriptions badly written? Small grammatical errors or spelling mistakes are acceptable.</p>
+                        <input type="radio" name="t1_grammar" value="bad" />Yes, badly written</li>
+                        <input type="radio" name="t1_grammar" value="good" />No, reasonably written</li>
+                        <br>
+                    </div>
+                    <div></div>
+                        <h4 class="big-highlight">4. Visual Contradiction:</h4>
+                        <p>Are the descriptions reasonably following the content of the video?</p>
+                        <p>If the descriptions seem possible given the contents of the video, mark as Yes. If the desciptions are impossible or talk about something that is not present in the video, mark as No.</p>
+                        <input type="radio" name="t1_vis" value="yes" />Yes, follows from the video(s)</li>
+                        <input type="radio" name="t1_vis" value="no" />No, statement is impossible or contradicts the video(s)</li>
+                        <br>
+                    </div>
+                    <button class="proceedBtn1 btn btn-secondary" id="proceedBtn1" style="margin-top: 20px;">Proceed to Task 2</button>
+                    <span id="error-box-1" class="hidden" style="color: red;">Please complete all questions before submitting</span>
+                </div>
+                <div class="task2 hidden">
+                    <h2>Task 2: Given Part 1 & 3, describe Part 2</h2>
+                    <div class="three-part" style="display: flex; min-width: 800px;">
+                        <div class="part1" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 1:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/{{task.row_data['set']}}/{{task.row_data['preevent']}}" type="video/mp4"> 
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/2_A_preevent.mp4" type="video/mp4"> -->
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="part2" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 2 (Hidden)</h4>
+                            </div>
+                            <span class='big-highlight'> After watching Part 3, are your answers from Task 1 still possible? </span>
+                            <div style="margin-top: 5px;">
+                                <span class='big-highlight'>Previous:</span> <span id="explanation_option1">{{task.row_data['txtArea1a1']}}</span>
+                                <br>
+                                <span class='big-highlight'>Is this description still possible?</span>
+                                <p name="txtArea1a1validity">{{task.row_data['txtArea1a1validity']}}</p>
+                            </div>
+                            <br>
+                            <div style="margin-left: 0px;">
+                                <span class='big-highlight'>Previous:</span> <span id="explanation_option2">{{task.row_data['txtArea1b1']}}</span>
+                                <br>
+                                <span class='big-highlight'>Is this description still possible?</span>
+                                <p name="txtArea1b1validity">{{task.row_data['txtArea1b1validity']}}</p>
+                            </div>
+                            <br>
+                            <div style="margin-left: 0px;">
+                                <span class='big-highlight'>Previous:</span> <span id="explanation_option3">{{task.row_data['txtArea1c1']}}</span>
+                                <br>
+                                <span class='big-highlight'>Is this description still possible?</span>
+                                <p name="txtArea1c1validity">{{task.row_data['txtArea1c1validity']}}</p>
+                                <br>
+                                <br>
+                                <span class='big-highlight'>Please write a new description to replace the impossible ones.</span> No duplicates please, you can be creative! 
+                                <p  name="#txtArea2b1" id="txtArea2b1" rows="3" style="width: 90%;">{{task.row_data['txtArea2b1']}}</p><br>
+                                <p  name="#txtArea2a1" id="txtArea2a1" rows="3" style="width: 90%;">{{task.row_data['txtArea2a1']}}</p><br>
+                                <p  name="#txtArea2c1" id="txtArea2c1" rows="3" style="width: 90%;">{{task.row_data['txtArea2c1']}}</p><br>
+                            </div>
+                            <span style="font-size:8pt">Please write at least 8 words per new description. Also, do NOT describe the outcome of the event that you see in Part 3; only write about Part 2.</span>
+                        </div>
+                        <div class="part3" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 3:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/{{task.row_data['set']}}/{{task.row_data['postevent']}}" type="video/mp4">
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/4_C_postevent.mp4" type="video/mp4"> -->
+                                    </video> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <b>Please check that your descriptions are: <br><br><span class="bubble-highlight-1">Visually grounded</span> <span class="bubble-highlight-2">Plausible</span> <span class="bubble-highlight-3">Persuasive</span> <span class="bubble-highlight-4">Non-contradictory</span></b>
+                    <br>
+                    <button class="proceedBtn2 btn btn-secondary" id="proceedBtn2" style="margin-top: 20px;">Proceed to Task 3</button>
+                    <span id="error-box-2" class="hidden" style="color: red;">
+                        <p>You must complete all parts before proceeding, without duplicates. Your descriptions have to be at least 8 words long. Please do not use "I think", "I feel", "Part 1", "Part 2", "Part 3" etc. See examples in the instructions if needed.</p>
+                    </span>
+                </div>
+                <div class="task3 hidden">
+                    <h2>Task 3: Given all parts, validate Part 2</h2>
+                    <div class="three-part" style="display: flex; min-width: 800px;">
+                        <div class="part1" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 1:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;;">
+                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/{{task.row_data['set']}}/{{task.row_data['preevent']}}" type="video/mp4">
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_A_preevent.mp4" type="video/mp4"> -->
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="part2" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 2:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/{{task.row_data['set']}}/{{task.row_data['event']}}" type="video/mp4"> 
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/11_B_event.mp4" type="video/mp4"> -->
+                                    </video>
+                                </div>
+                            </div>
+                            <span class='big-highlight'>Select the description, that are correct/possible after watching the video.</span>
+                            <div style="margin-top: 5px;">
+                                <span class='big-highlight'>Previous:</span> <span id="hypo3_exp1">{{task.row_data['hypo3_exp1']}}</span>
+                                <br>
+                                <span class='big-highlight'>Is this description still correct/possible?</span>
+                                <p name="txtArea2c1validity">{{task.row_data['txtArea2a1validity']}}</p>
+                            </div>
+                            <br>
+                            <div style="margin-left: 0px;">
+                                <span class='big-highlight'>Previous:</span> <span id="hypo3_exp2">{{task.row_data['hypo3_exp2']}}</span>
+                                <br>
+                                <span class='big-highlight'>Is this description still correct/possible?</span>
+                                <p name="txtArea2c1validity">{{task.row_data['txtArea2b1validity']}}</p>
+                            </div>
+                            <br>
+                            <div style="margin-left: 0px;">
+                                <span class='big-highlight'>Previous:</span> <span id="hypo3_exp3">{{task.row_data['hypo3_exp3']}}</span>
+                                <br>
+                                <span class='big-highlight'>Is this description still correct/possible?</span>
+                                <p name="txtArea2c1validity">{{task.row_data['txtArea2c1validity']}}</p>  
+                            </div>
+                            <div style="margin-left: 0px;" id="txtArea3a1_box">
+                                <br>
+                                <span class='big-highlight'>Finally, please write a new description based on the true video.</span> Make sure your description is specific and detailed, and accurately describes the events in Part 2 and Part 3:
+                                <br>
+                                <p  name="#txtArea3a1" id="txtArea3a1" rows="3" style="width: 90%;">{{task.row_data['txtArea3a1']}}</p>
+
+                            </div>
+                        </div>
+                        <div class="part3" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 250px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Part 3:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 200px; max-width: 100%;" controls muted>
+                                        <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops/{{task.row_data['set']}}/{{task.row_data['postevent']}}" type="video/mp4">
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/2_C_postevent.mp4" type="video/mp4"> -->
+                                    </video> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="radio_multi_div">
+                        <!-- <span class='big-highlight'>Required Feedback: Are there <u>more than one</u> complete events/clips/videos in the video <i>(spanning Part 1, 2 & 3).</i> </span>
+                        <br><input name="radio_multi" type="radio" id="radio_multi" value="yes" required/> Yes 
+                        <br><input name="radio_multi" type="radio" id="radio_multi" value="no"/> No
+                        <br><span style="font-size:8pt">[In general, this should be "No", but if you find a case where there are two complete sub-videos in one video, please report "Yes" here.]</span> -->
+                        <!-- <div id="fb-container2" style="display:none">
+                            <p style="font-size:8pt;color:grey;margin-left:20px"> Optional comments:
+                            <p cols="50" name="#fb-container2" rows="2" style="margin-left:10px;margin-top:10px"></p>
+                        </div> -->
+                    </div>
+                    <br>
+                    <b>Please check that your descriptions are: <br><br><span class="bubble-highlight-1">Visually grounded</span> <span class="bubble-highlight-2">Plausible</span> <span class="bubble-highlight-3">Persuasive</span> <span class="bubble-highlight-4">Non-contradictory</span></b>
+                    <br>
+                </div>
+                <br>
+                
+                <br>
+                <div>
+                    <input name="checkbox3" type="checkbox"/><i> Optional Feedback: </i> Something about the HIT is unclear/These videos have hateful/offensive content/You have additional feedback:
+                    <div id="fb-container3" style="display:none">
+                        <p style="font-size:8pt;color:grey;margin-left:20px">Your additional fedback:</p>
+                        <p cols="50" name="#fb-container3" rows="2" style="margin-left:10px;margin-top:10px"></p>
+                    </div>
+                </div>
+                <button class="submit btn btn-primary" id="submitBtn" style="margin-top: 20px;">Submit</button>
+                <span id="error-box" class="hidden" style="color: red;">
+                    <p>Please complete all tasks before submitting. Your descriptions have to be at least 8 words long. Please do not use "I think", "I feel", "Part 1", "Part 2", "Part 3" etc. See examples in the instructions if needed.</p>
+                </span>
+            </form>
+        </section>
+        <script>
+            $(function () {
+                $("input[name=checkbox1]").click(function () {
+                    var checked = $("input[name=checkbox1]:checked").length;
+                    if (checked == 0) {
+                        $('#fb-container1').hide();
+                    } else {
+                        $('#fb-container1').show();
+                    }
+                });
+            });
+            $(function () {
+                $("input[name=checkbox2]").click(function () {
+                    var checked = $("input[name=checkbox2]:checked").length;
+                    if (checked == 0) {
+                        $('#fb-container2').hide();
+                    } else {
+                        $('#fb-container2').show();
+                    }
+                });
+            });
+            
+            document.querySelector(".proceedBtn1").addEventListener("click", function(event) {
+                event.preventDefault();
+
+                if (false){
+                    document.getElementById("error-box-1").classList.remove('hidden');
+                    document.getElementById("error-box-1").style.display = "block";   
+                }
+                else {
+
+                    document.querySelector(".task2").classList.remove('hidden');
+                    document.querySelector(".task2").style.display = "block";
+                }
+              
+            });
+
+
+            document.querySelector(".proceedBtn2").addEventListener("click", function(event) {
+                event.preventDefault();
+               
+
+                if (false){
+                    document.getElementById("error-box-2").classList.remove('hidden');
+                    document.getElementById("error-box-2").style.display = "block";   
+                }
+                else {
+                    document.getElementById("error-box-2").classList.add('hidden');
+                    document.getElementById("error-box-2").style.display = "none";
+
+                    document.querySelector(".task3").classList.remove('hidden');
+                    document.querySelector(".task3").style.display = "block";
+                }
+            });
+
+            document.querySelector(".submit").addEventListener("click", function(event) {
+                // Allow form submission
+                // You can add additional validation or actions here if needed
+                var t3a1 = document.getElementById("txtArea3a1").value.toLowerCase();
+                //var t3a2 = document.getElementById("txtArea3a2").value;
+
+               
+            });
+                    
+
+
+
+        </script>
+    </body>

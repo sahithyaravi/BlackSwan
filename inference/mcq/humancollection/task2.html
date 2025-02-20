@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Visual Abductive reasoning</title>
+        <!-- Bootstrap v3.0.3 -->
+        <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .bubble-highlight-1 {
+            background-color: #f7b731; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-2 {
+            background-color: #30dc27; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-3 {
+            background-color: #7f32dc; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            .bubble-highlight-4 {
+            background-color: #f7317a; /* Adjust the color as needed */
+            color: #fff;
+            padding: 5px 10px; /* Adjust padding for desired bubble size */
+            border-radius: 10px; /* Adjust border-radius for rounded corners */
+            }
+            li {
+            margin-bottom: 15px;
+            }
+            .big-highlight {
+                color: rgb(110, 5, 5);
+                font-weight: bold;
+            }
+            .mid-highlight {
+                color: rgb(237, 110, 52);
+                font-size: medium;
+                font-weight: bold;
+            }
+            .big-highlight2 {
+                color: rgb(255, 0, 0);
+            }
+            .likert li {
+                float: left;
+                margin: 0 10px;
+                list-style-type: none;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <section class="container" id="SET1" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #000000; font-size: 10pt;">
+            <!-- Instructions -->
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-info" style="border-color: #4a90e2;">
+                        <div class="panel-heading" style="background-color: #4a90e2; border-color: #004080;">
+                            <h3 class="panel-title" style="color: #fff;">Instructions</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Welcome to this task! Please read the question carefully and answer it. All parts must be completed before submitting.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Instructions -->
+        </section>
+        <section class="container" style="margin-bottom: 15px; padding: 10px; font-family: Verdana, Geneva, sans-serif; color: #333333; font-size: 10pt;">
+            <form>
+                
+                <div class="task2">
+                    <h3>Given the beginning & the end, what happened in the middle?.</h3>
+                    <div class="three-part" style="display: flex; min-width: 800px;">
+                        <div class="part1" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 350px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Beginning:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 300px; max-width: 100%;" controls muted>
+                                        <source src="{{task.row_data['videos_url']}}{{task.row_data['preevent']}}" type="video/mp4"> 
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/2_A_preevent.mp4" type="video/mp4"> -->
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="part2" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 350px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>Middle (Hidden)</h4>
+                            </div>
+                        </div>
+                        <div class="part3" style="display: block; width: 33%;">
+                            <div style="display: block; width: 95%; height: 350px; background-color: #d1e0ec; margin-bottom: 20px; padding: 5px;">
+                                <h4>End:</h4>
+                                <div class="video-wrapper" style="display: flex; justify-content: center; align-items: center;">
+                                    <video id="video" style="display: block; max-height: 300px; max-width: 100%;" controls muted>
+                                        <source src="{{task.row_data['videos_url']}}{{task.row_data['postevent']}}" type="video/mp4">
+                                        <!-- <source src="https://ubc-cv-sherlock.s3.us-west-2.amazonaws.com/oops_val_v1/4_C_postevent.mp4" type="video/mp4"> -->
+                                    </video> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+      
+                    <span class='big-highlight'>Explain what could have happened in the middle.</span>
+                    <br>
+                    <span class="mid-highlight">Write three possible diverse explanantions:</span>
+                    <br>
+                    <div style="margin-left: 10px; margin-top: 10px;"> 
+                        <textarea name="#txtArea1a1" id="txtArea1a1" rows="3" style="width: 90%;" placeholder="What happened in the middle? Also describe WHY and HOW (rationale)." required></textarea>
+                    </div>
+                    <br>
+                    <div style="margin-left: 10px;">
+                        <textarea name="#txtArea1b1" id="txtArea1b1" rows="3" style="width: 90%;" placeholder="What happened in the middle? Also describe WHY and HOW (rationale)." required></textarea>
+                    </div>
+                    <br>
+                    <div style="margin-left: 10px;">
+                        <textarea name="#txtArea1c1" id="txtArea1c1" rows="3" style="width: 90%;" placeholder="What happened in the middle? Also describe WHY and HOW (rationale)." required></textarea>
+                    </div>
+                    <span style="font-size:8pt">Please write at least 8 words per description. All explanations should be unique. Please avoid using "it", "he", "she" or "they"; instead use specific descriptions like "the cat" or "the boy on the skateboard".</span>
+                </div>
+        
+        <br>
+                    
+                    <!-- Optional Feedback Section -->
+                    <div>
+                        <input name="checkbox3" type="checkbox"/>
+                        <i> Optional Feedback: </i> Something about the HIT is unclear/These videos have hateful/offensive content/You have additional feedback:
+                        <div id="fb-container3" style="display:none">
+                            <p style="font-size:8pt;color:grey;margin-left:20px">Your additional feedback:</p>
+                            <textarea cols="50" name="#fb-container3" rows="2" style="margin-left:10px;margin-top:10px"></textarea>
+                        </div>
+                    </div>
+                    
+                    <button class="submit btn btn-primary" id="submitBtn" style="margin-top: 20px;">Submit</button>
+                    <span id="error-box-1" class="hidden" style="color: red;">
+                        <p>Please complete all tasks before submitting. Your descriptions have to be at least 8 words long. Please do not use "I think", "I feel", "Part 1", "Part 2", "Part 3" etc. See examples in the instructions if needed.</p>
+                    </span>
+                    
+                    <script>
+                        function updateCorrectnessValue(val) {
+                            document.getElementById("correctnessValue").innerText = val;
+                        }
+                    
+                        function updateDepthValue(val) {
+                            document.getElementById("depthValue").innerText = val;
+                        }
+                    
+                        function updateDetailValue(val) {
+                            document.getElementById("detailValue").innerText = val;
+                        }
+
+                    
+                        function updateVisualContradictionValue(val) {
+                            document.getElementById("visValue").innerText = (val == 1 ? 1 : 0);
+                        }
+                    </script>
+                    
+                    <style>
+                        /* Slider Styles */
+                        .slider {
+                            -webkit-appearance: none;
+                            width: 100%;
+                            height: 15px;
+                            border-radius: 5px;
+                            background: linear-gradient(to right, #f44336, #ffeb3b, #4caf50);
+                            outline: none;
+                            opacity: 0.9;
+                            transition: opacity .15s ease-in-out;
+                        }
+                    
+                        .slider:hover {
+                            opacity: 1;
+                        }
+                    
+                        /* Style for the bubble highlights */
+                        .big-highlight {
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+                    
+                        p {
+                            font-size: 14px;
+                            margin-top: 5px;
+                        }
+                    
+                        /* Style for the container */
+                        div {
+                            margin-bottom: 15px;
+                        }
+                    </style>
+                    <script>
+                        document.querySelector("#submitBtn").addEventListener("click", function(event) {
+                            // You can add additional validation or actions here if needed
+                            var t1a1 = document.getElementById("txtArea1a1").value.toLowerCase();
+                            //var t1a2 = document.getElementById("txtArea1a2").value;
+                            var t1b1 = document.getElementById("txtArea1b1").value.toLowerCase();
+                            //var t1b2 = document.getElementById("txtArea1b2").value;
+                            var t1c1 = document.getElementById("txtArea1c1").value.toLowerCase();
+                            //var t1c2 = document.getElementById("txtArea1c2").value;
+            
+                            var w1 = t1a1.split(" ").length;
+                            var w2 = t1b1.split(" ").length;
+                            var w3 = t1c1.split(" ").length;
+            
+                            let bad_phrases = ["i think", "i feel", "part 1", "part 2", "part 3"];
+            
+                            var containsBadPhrase1 = bad_phrases.some(phrase => t1a1.includes(phrase));
+                            var containsBadPhrase2 = bad_phrases.some(phrase => t1b1.includes(phrase));
+                            var containsBadPhrase3 = bad_phrases.some(phrase => t1c1.includes(phrase));
+            
+                            if (t1a1 === ""|| t1b1 === "" || t1c1 === "" || w1 < 8 || w2 < 8 || w3 < 8 || t1a1 === t1b1 || t1a1 === t1c1 || t1b1 === t1c1 || containsBadPhrase1 || containsBadPhrase2 || containsBadPhrase3){
+                                event.preventDefault();
+                                document.getElementById("error-box-1").classList.remove('hidden');
+                                document.getElementById("error-box-1").style.display = "block";   
+                            }
+                            else {
+                                document.getElementById("error-box-1").classList.add('hidden');
+                                document.getElementById("error-box-1").style.display = "none";
+                            }
+                        });
+                    </script>

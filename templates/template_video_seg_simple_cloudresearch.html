@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Abductive reasoning</title>
+    <!-- Bootstrap v3.0.3 -->
+    <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- Bootstrap v3.0.3 -->
+<link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet"/>
+
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
+<section class="container" id="SET1" style="margin-bottom:15px; padding: 10px 10px; font-family: Verdana, Geneva, sans-serif; color:#333333; font-size:10pt;">
+    <!-- Instructions -->
+    <div class="row col-xs-12 col-md-12">
+        <div class="panel panel-primary" style="border-color: #800080">
+            <div class="panel-heading" style="background-image: none;background-color:#800080;border-color: #800080">
+                <strong>Instructions</strong>
+            </div>
+            <div class="panel-body">
+             <p> You are given a video with an interesting event. You need to mark two segments of the video -</p>
+                <ul>
+                    <li><span style="color: #007bff;">Setup</span> - Refers to the frames that set up the event or, the build up to the event. The setup should <b>not reveal</b> anything about the event.</li>
+                    <li><span style="color: #28a745;">Event</span> - The starting of the surprising event itself, the actual unfolding of the event.</li> 
+                </ul>
+                <p>Here is a <b>3 min tutorial</b> demonstrating how to perform the task:</p> <p style="color:red;font-size: 20px;">Please watch this tutorial before starting! Especially pay attention to Example #3.</p>
+               <iframe width="560" height="315" src="https://www.youtube.com/embed/Nu_C00NNWh4?si=jYFye7IXRA9R-u10" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <br>If this video does not load, here's the link to YouTube: <a href="https://youtu.be/rFuNlJUZD0I">https://youtu.be/rFuNlJUZD0I</a>
+            </div>
+        </div>
+
+
+
+        <br>
+        <br>
+
+
+        
+    </div>
+    <!-- End Instructions -->
+
+    <!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+    <!-- You must include crowd-form so that your task submits answers to MTurk -->
+    <form>
+
+    <crowd-form answer-format="flatten-objects">
+
+        <!-- The crowd-classifier element will create a tool for the Worker to select the
+               correct answer to your question -->
+        <!-- <crowd-classifier 
+          name="category"
+          categories="['Music', 'Sports', 'News & Politics', 'Comedy', 'Other']"
+          header="What type of video is this?"
+        > -->
+
+        <classification-target>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <video id="video" width="100%" height="auto" controls>
+                    <!-- Your video file URLs will be substituted for the "video_url" attribute below when 
+                         you publish a batch with a CSV input file containing multiple video file URLs -->
+                    <source src="{{task.row_data['links']}}" 
+                     type="video/mp4">
+                </video> 
+            </div>
+            <div class="timestamp-container" style="margin-top: 20px;">
+                <button class="getTimeBtn btn btn-primary">Setup begins</button>
+                <input type="text" name="t1" class="currentTime form-control" readonly required style="display: inline-block; width: 60px;">
+            </div>
+            <div class="timestamp-container" style="margin-top: 20px;">
+                <button class="getTimeBtn btn btn-success">Setup ends & Event begins</button>
+                <input type="text" name="t2" class="currentTime form-control" readonly required style="display: inline-block; width: 60px;">
+            </div>
+            <!-- <div class="timestamp-container" style="margin-top: 20px;">
+                <button class="getTimeBtn btn btn-success">Event ends & Outcome begins</button>
+                <input type="text" name="t3" class="currentTime form-control" readonly required style="display: inline-block; width: 60px;">
+            </div>
+            <div class="timestamp-container" style="margin-top: 20px;">
+                <button class="getTimeBtn btn btn-warning">Outcome ends</button>
+                <input type="text" name="t4" class="currentTime form-control" readonly required style="display: inline-block; width: 60px;">
+            </div> -->
+        </classification-target>
+        <br>
+
+        <div>
+            <input name="checkbox1" id="checkbox1" type="checkbox"/><i> Feedback: </i> This video contains more than one video in it.
+        </div>
+        <!-- <div id="fb-container1" class="hidden">
+            <p style="font-size:8pt;color:grey;margin-left:20px">Write a short explaination of why</p>
+            <textarea cols="50" name="#fb-container1" rows="2" style="margin-left:10px;margin-top:10px"></textarea>
+        </div> -->
+        <div class="timestamp-container" id="tend" style="display: none;">
+            <button class="getTimeBtn btn btn-warning">End of first video</button>
+            <input type="text" name="tend" class="currentTime form-control" readonly style="display: inline-block; width: 60px;">
+        </div>
+        <button class="submit btn btn-primary" id="submitBtn" style="margin-top: 20px;">Submit</button>
+        <span id="error-box" class="hidden" style="color: red;"><p>You must complete selecting all timestamps, and all timestamps must be different and in sequential order. Failure to do the task correctly will lead to rejections.</p></span>
+        
+
+
+        <!-- Use the full-instructions section for more detailed instructions that the 
+                Worker can open while working on the task. Including more detailed 
+                instructions and additional examples of good and bad answers here can
+                help get good results. You can include any HTML here. -->
+        <!-- <full-instructions header="Video Classification Instructions">
+            <p>Read the task carefully and inspect the video.</p>
+            <p>Choose the appropriate label that best suits the video.</p>
+        </full-instructions> -->
+
+    </crowd-classifier>
+</crowd-form>
+</form>
+
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var video = document.getElementById('video');
+        var getTimeBtns = document.querySelectorAll('.getTimeBtn');
+        var currentTimeInputs = document.querySelectorAll('.currentTime');
+
+        getTimeBtns.forEach(function(btn, index) {
+            btn.addEventListener('click', function() {
+                var currentTime = video.currentTime;
+                currentTimeInputs[index].value = currentTime.toFixed(2); // Rounds to 2 decimal places
+                event.preventDefault();
+            });
+        });
+        document.querySelector(".submit").addEventListener("click", function(event) {
+            // Allow form submission
+            // You can add additional validation or actions here if needed
+            var t1 = document.querySelector("input[name=t1]").value;
+            var t2 = document.querySelector("input[name=t2]").value;
+            // var t3 = document.querySelector("input[name=t3]").value;
+            // var t4 = document.querySelector("input[name=t4]").value;
+            var num1 = parseFloat(t1);
+            var num2 = parseFloat(t2);
+            // var num3 = parseFloat(t3);
+            // var num4 = parseFloat(t4);
+            if (t1 === "" || t2 === "" || t1 === t2 || num1 >= num2){
+                console.log("Error: All timestamps must be selected.");
+                document.getElementById("error-box").classList.remove('hidden');
+                document.getElementById("error-box").style.display = "block";
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+<!-- <script>
+    document.getElementById('checkbox1').addEventListener('change', function() {
+        var textField = document.getElementById('fb-container1');
+        if (this.checked) {
+            textField.classList.remove('hidden');
+        } else {
+            textField.classList.add('hidden');
+        }
+    });
+</script> -->
+
+<script>
+    document.querySelector(".submit").addEventListener("click", function(event) {
+        // Allow form submission
+        // You can add additional validation or actions here if needed
+        var t1 = document.querySelector("input[name=txtArea1a]").value;
+        var t2 = document.querySelector("input[name=txtArea1b]").value;
+    
+        if (t1 === "" || t2 === ""){
+            console.log("Error: All timestamps must be selected.");
+            document.getElementById("error-box").classList.remove('hidden');
+            document.getElementById("error-box").style.display = "block";
+            event.preventDefault();
+        }
+    });
+    
+    </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var checkbox = document.getElementById('checkbox1');
+    var buttonContainer = document.getElementById('tend');
+
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            buttonContainer.style.display = 'block';
+        } else {
+            buttonContainer.style.display = 'none';
+        }
+    });
+});
+
+</script>
