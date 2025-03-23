@@ -1,14 +1,12 @@
-# Black Swan Suite 
-
-#### **Black Swan: Abductive and Defeasible Video Reasoning in Unpredictable Events**
+# **Black Swan: Abductive and Defeasible Video Reasoning in Unpredictable Events**
 *Aditya Chinchure🔸,  Sahithya Ravi🔸,  Raymond Ng,  Vered Shwartz,  Boyang Li,  Leonid Sigal*
 (🔸 indicates equal contribution)
 
-### News
-- 📚 Paper available on [arXiv](https://arxiv.org/abs/2412.05725)
+[[paper](https://arxiv.org/abs/2412.05725)]
+[[project](https://blackswan.cs.ubc.ca/)]
+[[dataset](https://huggingface.co/collections/UBC-ViL/black-swan-abductive-and-defeasible-reasoning-67de1a4ab7ddc22edf0b0542)]
+[[bibtex](#citing-black-swan)]
 
-### Dataset
-To be released.
 
 ### Code
 
@@ -22,4 +20,17 @@ The code is organized as follows:
 You can set up the python environment by running the following command:
 ```bash
 pip install -r requirements.txt
+```
+
+### Citing Black Swan
+```tex
+@misc{chinchure2024blackswanabductivedefeasible,
+      title={Black Swan: Abductive and Defeasible Video Reasoning in Unpredictable Events}, 
+      author={Aditya Chinchure and Sahithya Ravi and Raymond Ng and Vered Shwartz and Boyang Li and Leonid Sigal},
+      year={2024},
+      eprint={2412.05725},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2412.05725}, 
+}
 ```
