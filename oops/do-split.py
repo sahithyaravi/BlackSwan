@@ -15,7 +15,9 @@ files = os.listdir(set_data)
 with open("/datasets/oops/annotations/transition_times.json", "r") as file:
     data = json.load(file)
 
-setnumsd = [18,19]
+# To manage our data, we split it into multiple sets for the purposes of data collection. 
+# These sets get merged later.
+setnumsd = list(range(1, 17))
 
 for setnum in setnumsd:
 
