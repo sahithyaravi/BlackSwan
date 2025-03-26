@@ -32,33 +32,16 @@ def compute_metrics(responses, ground_truths):
 
 def process_data(data):
     
-    task_metrics = {'task1': {'clip': [], 'clip_mean': []},
-                    'task2': {'clip': [], 'clip_mean': []},
-                    'task3': {'clip': [], 'clip_mean': []}}
+    task_metrics = {'Forecaster': {'clip': [], 'clip_mean': []},
+                    'Detective': {'clip': [], 'clip_mean': []},
+                    'Reporter': {'clip': [], 'clip_mean': []}}
 
     for item in tqdm(data):
-        # Task 1
-        if 'task1_responses' in item and any(item['task1_gt']):
-            clipscore, clipmean = compute_metrics(item['task1_responses'], item['task1_gt'])
-            task_metrics['task1']['clip'].append(clipscore)
-            task_metrics['task1']['clip_mean'].append(clipmean)
 
-        # Task 2
-        task2_ground_truths = get_ground_truths(item['task1_gt'], item['task2_checkboxes'], item['task2_gt'], task='task2')
-        #print('T2:', task2_ground_truths)
-        if 'task2_responses' in item and any(task2_ground_truths):
-            clipscore, clipmean = compute_metrics(item['task2_responses'], task2_ground_truths)
-            task_metrics['task2']['clip'].append(clipscore)
-            task_metrics['task2']['clip_mean'].append(clipmean)
-
-        # Task 3
-        task3_ground_truths = get_ground_truths(task2_ground_truths, item['task3_checkboxes'], item['task3_gt'], task='task3')
-        #print('T3:', task3_ground_truths)
-        if 'task3_responses' in item and any(task3_ground_truths):
-            clipscore, clipmean = compute_metrics(item['task3_responses'], task3_ground_truths)
-            task_metrics['task3']['clip'].append(clipscore)
-            task_metrics['task3']['clip_mean'].append(clipmean)
-
+        task = item['task']
+        clipscore, clipmean = compute_metrics(item['responses'], item['gt_ref_ans'])
+        task_metrics[task]['clip'].append(clipscore)
+        task_metrics[task]['clip_mean'].append(clipmean)
 
     # Compute the average for each task
     average_metrics = {}
@@ -93,9 +76,9 @@ if __name__ == "__main__":
     
     # Define input and output arguments
     parser.add_argument('--input_path', type=str, help="Path to the input JSON file.", 
-    default="collected_data/data_latest/VAR_Data_v9p2_caption_mf_new.json")
+    default="")
     parser.add_argument('--output_path', type=str, help="Path to save the output JSON file with metrics.",
-    default="ngram_metrics.json")
+    default="clip_metrics.json")
 
     # Parse the arguments
     args = parser.parse_args()

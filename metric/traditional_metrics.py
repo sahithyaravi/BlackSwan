@@ -49,33 +49,17 @@ def compute_metrics(responses, ground_truths):
 
 def process_data(data):
     
-    task_metrics = {'task1': {'bleu': [], 'rouge1': [], 'rougeL': []},
-                    'task2': {'bleu': [], 'rouge1': [], 'rougeL': []},
-                    'task3': {'bleu': [], 'rouge1': [], 'rougeL': []}}
+    task_metrics = {'Forecaster': {'bleu': [], 'rouge1': [], 'rougeL': []},
+                    'Detective': {'bleu': [], 'rouge1': [], 'rougeL': []},
+                    'Reporter': {'bleu': [], 'rouge1': [], 'rougeL': []}}
 
     for item in tqdm(data):
-        # Task 1
-        if 'task1_responses' in item and any(item['task1_gt']):
-            bleu, rouge, corpus_bleu_score = compute_metrics(item['task1_responses'], item['task1_gt'])
-            task_metrics['task1']['bleu'].append(bleu)
-            task_metrics['task1']['rouge1'].append(rouge['rouge1'])
-            task_metrics['task1']['rougeL'].append(rouge['rougeL'])
 
-        # Task 2
-        task2_ground_truths = get_ground_truths(item['task1_gt'], item['task2_checkboxes'], item['task2_gt'], task='task2')
-        if 'task2_responses' in item and any(task2_ground_truths):
-            bleu, rouge, corpus_bleu_score = compute_metrics(item['task2_responses'], task2_ground_truths)
-            task_metrics['task2']['bleu'].append(bleu)
-            task_metrics['task2']['rouge1'].append(rouge['rouge1'])
-            task_metrics['task2']['rougeL'].append(rouge['rougeL'])
-
-        # Task 3
-        task3_ground_truths = get_ground_truths(task2_ground_truths, item['task3_checkboxes'], item['task3_gt'], task='task3')
-        if 'task3_responses' in item and any(task3_ground_truths):
-            bleu, rouge, corpus_bleu_score = compute_metrics(item['task3_responses'], task3_ground_truths)
-            task_metrics['task3']['bleu'].append(bleu)
-            task_metrics['task3']['rouge1'].append(rouge['rouge1'])
-            task_metrics['task3']['rougeL'].append(rouge['rougeL'])
+        task = item['task']
+        bleu, rouge, corpus_bleu_score = compute_metrics(item['responses'], item['gt_ref_ans'])
+        task_metrics[task]['bleu'].append(bleu)
+        task_metrics[task]['rouge1'].append(rouge['rouge1'])
+        task_metrics[task]['rougeL'].append(rouge['rougeL'])
 
 
     # Compute the average for each task
@@ -112,7 +96,7 @@ if __name__ == "__main__":
     
     # Define input and output arguments
     parser.add_argument('--input_path', type=str, help="Path to the input JSON file.", 
-    default="collected_data/data_latest/VAR_Data_v9p2_caption_mf_new.json")
+    default="")
     parser.add_argument('--output_path', type=str, help="Path to save the output JSON file with metrics.",
     default="ngram_metrics.json")
 
