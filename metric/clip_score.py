@@ -1,22 +1,11 @@
 import json
-# import nltk
-# from nltk.translate.bleu_score import sentence_bleu, corpus_bleu, SmoothingFunction
-# from rouge_score import rouge_scorer
 from statistics import mean
 import argparse
 from tqdm import tqdm
-#from sentence_transformers import SentenceTransformer
 from torch.nn.functional import cosine_similarity
-
-from PIL import Image
-import requests
-
 from transformers import CLIPProcessor, CLIPModel, CLIPTokenizer
 import torch
 from utils import get_ground_truths
-
-# model = CLIPModel.from_pretrained("openai/clip-vit-large-patch14")
-# processor = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")
 
 model_name = "openai/clip-vit-large-patch14"
 model = CLIPModel.from_pretrained(model_name)
@@ -29,32 +18,14 @@ def get_sentence_embeddings(sentences):
         outputs = model.get_text_features(**inputs)
     return outputs
 
-# Ensure NLTK resources are downloaded
-# nltk.download('punkt')
-# smoothing_function = SmoothingFunction().method0
 
 def compute_metrics(responses, ground_truths):
-
-    # model = SentenceTransformer("clip-ViT-B-32")
-    # print(responses, ground_truths)
-    # text_emb1 = model.encode(responses)
-    # text_emb2 = model.encode(ground_truths)
-    # similarity_scores = model.similarity(text_emb1, text_emb2)
-
-    # Function to get embeddings
-
-    # inputs1 = processor(text=["a photo of a cat", "a photo of a dog"], return_tensors="pt", padding=True)
-    # embeddings1 = model(**inputs1)
-    # inputs2 = processor(text=["a photo of a cat", "a photo of a dog"], return_tensors="pt", padding=True)
-    # embeddings2 = model(**inputs2)
 
     embeddings1 = get_sentence_embeddings(responses)
     embeddings2 = get_sentence_embeddings(ground_truths)
 
     # Calculate cosine similarities between each sentence in set1 and each in set2
     similarity_scores = cosine_similarity(embeddings1.unsqueeze(1), embeddings2.unsqueeze(0), dim=-1)
-    # print(similarity_scores)
-    # print(torch.max(similarity_scores).item())
 
     return torch.max(similarity_scores).item(), torch.mean(similarity_scores).item()
 
